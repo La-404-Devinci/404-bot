@@ -1,0 +1,46 @@
+{
+  "name": "404-bot",
+  "version": "1.0.0",
+  "description": "The discord bot for the 404 server",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "format": "prettier --write .",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint src/**/*.ts",
+    "lint:prettier": "prettier --check .",
+    "db:start": "docker compose -f docker/db.compose.yml up -d --renew-anon-volumes",
+    "db:stop": "docker compose -f docker/db.compose.yml down -v"
+  },
+  "keywords": [
+    "discord",
+    "404",
+    "bot"
+  ],
+  "author": "Kan-A-Pesh",
+  "private": true,
+  "dependencies": {
+    "cron": "^4.1.0",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "luxon": "^3.5.0",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/luxon": "^3.4.2",
+    "@types/redis": "^4.0.10",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0"
+  }
+}
