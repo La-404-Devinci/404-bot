@@ -1,4 +1,4 @@
-import client from "core/client";
+import client from "@/core/client";
 
 client.application?.commands.set([]);
 client.guilds.cache.forEach(async (guild) => {

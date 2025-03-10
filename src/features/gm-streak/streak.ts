@@ -1,7 +1,7 @@
-import redis from "core/database";
+import redis from "@/core/database";
 import { DateTime } from "luxon";
 import { SlashCommandBuilder } from "discord.js";
-import client from "core/client";
+import client from "@/core/client";
 
 const streakCommand = new SlashCommandBuilder().setName("gm-streak").setDescription("Check your gm streak");
 

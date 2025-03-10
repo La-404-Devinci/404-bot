@@ -1,5 +1,5 @@
-import client from "core/client";
-import redis from "core/database";
+import client from "@/core/client";
+import redis from "@/core/database";
 import { DateTime } from "luxon";
 
 client.on("messageCreate", async (message) => {

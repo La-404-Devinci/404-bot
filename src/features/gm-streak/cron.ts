@@ -1,6 +1,6 @@
-import redis from "core/database";
+import redis from "@/core/database";
 import { CronJob } from "cron";
-import client from "core/client";
+import client from "@/core/client";
 import { DateTime } from "luxon";
 
 CronJob.from({

@@ -1,5 +1,5 @@
-import client from "core/client";
-import redis from "core/database";
+import client from "@/core/client";
+import redis from "@/core/database";
 import { SlashCommandBuilder } from "discord.js";
 
 const leaderboardCommand = new SlashCommandBuilder()
