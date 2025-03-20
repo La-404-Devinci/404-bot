@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dev": "echo 'No dev script at root folder, move to a project folder!'",
+    "db:start": "docker compose -f docker/db.compose.yml up -d --renew-anon-volumes",
+    "db:stop": "docker compose -f docker/db.compose.yml down -v"
+  }
+}
