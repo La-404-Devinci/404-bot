@@ -1,12 +1,15 @@
 services:
   app:
     build:
-      context: ../
+      context: ../discord
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
       - REDIS_URL=redis://db:6379
       - TOKEN=${TOKEN}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - BASE_URL=${BASE_URL}
   db:
     image: redis:latest
     volumes:
