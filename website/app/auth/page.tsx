@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import Dither from "@/components/background/dither";
 import Card from "@/components/ui/card";
