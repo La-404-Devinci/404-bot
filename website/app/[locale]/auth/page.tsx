@@ -1,10 +1,13 @@
-"use client";
+"use server";
 
 import Dither from "@/components/background/dither";
 import Card from "@/components/ui/card";
 import LoginButton from "./login-button";
+import { getTranslations } from "next-intl/server";
 
 export default async function AuthPage() {
+  const t = await getTranslations("auth");
+
   return (
     <>
       <div className="absolute inset-0 -z-10 opacity-30">
@@ -21,13 +24,12 @@ export default async function AuthPage() {
         />
       </div>
       <main className="flex flex-col items-center justify-center h-screen">
-        <Card title="Access the Headquarters">
+        <Card title={t("title")} footer={<LoginButton />}>
           <p className="text-white/80 mb-8">
-            Start earning points by logging in with your Discord account.
+            {t("description")}
             <br />
-            You must be a member of the <code>404</code> server to login.
+            {t("discord")}
           </p>
-          <LoginButton />
         </Card>
       </main>
     </>

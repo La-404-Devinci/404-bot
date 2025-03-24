@@ -1,3 +1,5 @@
+name: 404-bot-db
+
 services:
   db:
     image: redis:latest
