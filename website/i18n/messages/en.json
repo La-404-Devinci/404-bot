@@ -1,0 +1,17 @@
+{
+  "utils": {
+    "metadata": {
+      "title": "The 404 Headquarters",
+      "description": "Join us in the 404 Headquarters, earn points by completing challenges, and unlock new badges, and be the first on the leaderboard!"
+    }
+  },
+  "home": {
+    "title": "The 404 Headquarters",
+    "description": "Coming soon..."
+  },
+  "auth": {
+    "title": "Access the Headquarters",
+    "description": "Start earning points by logging in with your Discord account. You must be a member of the 404 server to login.",
+    "discord": "Login with Discord"
+  }
+}

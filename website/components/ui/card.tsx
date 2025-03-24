@@ -11,7 +11,9 @@ export default function Card({ children, footer, title }: CardProps) {
         <h2 className="text-white text-2xl font-bold">{title}</h2>
       </header>
 
-      <div className="mt-6 pt-6 border-t border-white/20">{children}</div>
+      <div className="mt-6 pt-6 border-t border-white/20 max-w-xl">
+        {children}
+      </div>
 
       {footer && (
         <footer className="mt-6 pt-6 border-t border-white/20 flex justify-end">
