@@ -25,11 +25,7 @@ export default async function AuthPage() {
       </div>
       <main className="flex flex-col items-center justify-center h-screen">
         <Card title={t("title")} footer={<LoginButton />}>
-          <p className="text-white/80 mb-8">
-            {t("description")}
-            <br />
-            {t("discord")}
-          </p>
+          <p className="text-white/80 mb-8">{t("description")}</p>
         </Card>
       </main>
     </>

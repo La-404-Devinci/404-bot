@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { pixelFont } from "@/app/fonts";
 import { getTranslations } from "next-intl/server";
+import { Toaster } from "@/components/ui/toaster";
 
 export async function generateMetadata({
   params,
@@ -39,6 +40,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${pixelFont.className} antialiased`}>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   );

@@ -2,29 +2,21 @@
 
 import Button from "@/components/ui/button";
 import { authClient } from "@/lib/auth/auth-client";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { toast } from "sonner";
 
 export default function LoginButton() {
-  const [error, setError] = useState<string | null>(null);
-
   const handleLogin = useCallback(async () => {
-    setError(null);
-
     const result = await authClient.signIn.social({
       provider: "discord",
       callbackURL: "/me",
-      newUserCallbackURL: "/me?newUser=true",
+      newUserCallbackURL: "/me#newUser",
     });
 
     if (result.error) {
-      setError(result.error.message ?? "An unknown error occurred");
+      toast.error(result.error.message ?? "An unknown error occurred");
     }
   }, []);
 
-  return (
-    <>
-      <Button onClick={handleLogin}>Login with Discord</Button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-    </>
-  );
+  return <Button onClick={handleLogin}>Login with Discord</Button>;
 }
