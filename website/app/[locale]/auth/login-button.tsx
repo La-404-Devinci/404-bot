@@ -9,8 +9,8 @@ export default function LoginButton() {
   const handleLogin = useCallback(async () => {
     const result = await authClient.signIn.social({
       provider: "discord",
-      callbackURL: "/me",
-      newUserCallbackURL: "/me#newUser",
+      callbackURL: process.env.NEXT_PUBLIC_APP_URL + "/me",
+      newUserCallbackURL: process.env.NEXT_PUBLIC_APP_URL + "/me#newUser",
     });
 
     if (result.error) {

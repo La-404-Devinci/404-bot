@@ -22,6 +22,11 @@ export const GET = async (request: Request) => {
   const image = await fetch(userImage);
   const imageBuffer = await image.arrayBuffer();
 
+  const baseImage = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/models/card.png`
+  );
+  const baseImageBuffer = await baseImage.arrayBuffer();
+
   //! NOTES
   //! The card texture is 512x512
   //! But each face is 256x390
@@ -39,6 +44,11 @@ export const GET = async (request: Request) => {
   })
     .composite([
       {
+        input: await sharp(baseImageBuffer).toBuffer(),
+        top: 0,
+        left: 0,
+      },
+      {
         input: await sharp(imageBuffer)
           .resize(128)
           .composite([
@@ -48,21 +58,16 @@ export const GET = async (request: Request) => {
             },
           ])
           .toBuffer(),
-        gravity: "center",
-        blend: "over",
-      },
-      {
-        input: Buffer.from(
-          `<svg><rect x="16" y="16" width="224" height="358" fill="transparent" stroke="black" stroke-width="2"/></svg>`
-        ),
-        top: 0,
-        left: 256,
+        top: 64,
+        left: 64,
       },
     ])
     .png()
     .toBuffer();
 
-  const response = new NextResponse(generatedImage);
+  const flippedImage = await sharp(generatedImage).flip().toBuffer();
+
+  const response = new NextResponse(flippedImage);
   response.headers.set("Content-Type", "image/png");
   return response;
 };

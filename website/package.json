@@ -52,6 +52,7 @@
     "typescript": "^5"
   },
   "optionalDependencies": {
+    "@esbuild/linux-x64": "^0.25.1",
     "@tailwindcss/oxide-darwin-arm64": "^4.0.15"
   }
 }

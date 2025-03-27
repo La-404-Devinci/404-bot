@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, extend, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
   useTexture,
@@ -19,19 +19,26 @@ import {
   RigidBodyProps,
 } from "@react-three/rapier";
 import * as THREE from "three";
+import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 
 interface LanyardProps {
   position?: [number, number, number];
   gravity?: [number, number, number];
   fov?: number;
   transparent?: boolean;
+  cardImage?: string;
+  lanyardImage?: string;
 }
+
+extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({
   position = [0, 0, 30],
   gravity = [0, -40, 0],
   fov = 20,
   transparent = true,
+  cardImage = "/models/card.png",
+  lanyardImage = "/models/lanyard.png",
 }: LanyardProps) {
   return (
     <div className="relative z-0 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
@@ -44,7 +51,7 @@ export default function Lanyard({
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={1 / 60}>
-          <Band />
+          <Band lanyardImage={lanyardImage} cardImage={cardImage} />
         </Physics>
         <Environment blur={0.75}>
           <Lightformer
@@ -84,9 +91,16 @@ export default function Lanyard({
 interface BandProps {
   maxSpeed?: number;
   minSpeed?: number;
+  lanyardImage: string;
+  cardImage: string;
 }
 
-function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
+function Band({
+  maxSpeed = 50,
+  minSpeed = 0,
+  lanyardImage,
+  cardImage,
+}: BandProps) {
   // Using "any" for refs since the exact types depend on Rapier's internals
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
@@ -109,7 +123,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
   };
 
   const { nodes, materials } = useGLTF("/models/card.glb") as any;
-  const texture = useTexture("/models/lanyard.png");
+  const texture = useTexture(lanyardImage);
+  const cardTexture = useTexture(cardImage);
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([
@@ -259,7 +274,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
           >
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial
-                map={materials.base.map}
+                map={cardTexture}
                 map-anisotropy={16}
                 clearcoat={1}
                 clearcoatRoughness={0.15}
