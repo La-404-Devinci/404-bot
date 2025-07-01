@@ -1,4 +1,5 @@
 import client from "@/core/client";
+import { isInvalidChannel } from "@/core/guards/text-channel";
 import redis from "@/core/database";
 import { SlashCommandBuilder } from "discord.js";
 
@@ -18,6 +19,7 @@ client.on("ready", async () => {
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
   if (interaction.commandName !== "gm-leaderboard") return;
+  if (await isInvalidChannel(interaction)) return;
 
   const result = await redis.keys("user:*:gm:streak");
 

@@ -2,6 +2,7 @@ import redis from "@/core/database";
 import { DateTime } from "luxon";
 import { SlashCommandBuilder } from "discord.js";
 import client from "@/core/client";
+import { isInvalidChannel } from "@/core/guards/text-channel";
 
 const streakCommand = new SlashCommandBuilder().setName("gm-streak").setDescription("Check your gm streak");
 
@@ -17,6 +18,7 @@ client.on("ready", async () => {
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
   if (interaction.commandName !== "gm-streak") return;
+  if (await isInvalidChannel(interaction)) return;
 
   const userId = interaction.user.id;
   const streak = parseInt((await redis.get(`user:${userId}:gm:streak`)) || "0");

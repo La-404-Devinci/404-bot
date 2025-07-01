@@ -1,9 +1,11 @@
 import client from "@/core/client";
+import { isInvalidChannel } from "@/core/guards/text-channel";
 import redis from "@/core/database";
 import { DateTime } from "luxon";
 
 client.on("messageCreate", async (message) => {
   if (!message.content.toLowerCase().startsWith("gm")) return;
+  if (await isInvalidChannel(message)) return;
 
   const userId = message.author.id;
   const streak = parseInt((await redis.get(`user:${userId}:gm:streak`)) || "0");
@@ -24,6 +26,5 @@ client.on("messageCreate", async (message) => {
   await redis.set(`user:${userId}:gm:message`, message.id);
   await redis.set(`user:${userId}:gm:channel`, message.channel.id);
 
-  // Send streak update message
   await message.react("🔥");
 });

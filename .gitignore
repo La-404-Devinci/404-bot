@@ -1,3 +1,82 @@
-node_modules
-dist
-.env
+# Dependencies
+/node_modules
+node_modules/
+/.pnpm
+/pnpm-lock.yaml
+
+# Next.js
+/.next/
+/out/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+discord/.env
+
+# TypeScript & Build output
+/dist
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & IDE directories
+.idea
+.vscode
+.cursor
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+# Dependencies
+node_modules/
+/node_modules
+/.pnpm
+/pnpm-lock.yaml
+
+# Next.js
+/.next/
+/out/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+discord/.env
+
+# TypeScript & Build output
+/dist
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & IDE directories
+.idea
+.vscode
+.cursor
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.dbdiscord/node_modules/

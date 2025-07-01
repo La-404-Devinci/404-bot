@@ -3,5 +3,30 @@
     "dev": "echo 'No dev script at root folder, move to a project folder!'",
     "db:start": "docker compose -f docker/db.compose.yml up -d --renew-anon-volumes",
     "db:stop": "docker compose -f docker/db.compose.yml down -v"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.1.4",
+    "better-auth": "^1.2.12",
+    "clsx": "^2.1.1",
+    "cron": "^4.3.1",
+    "discord.js": "^14.21.0",
+    "drizzle-orm": "^0.44.2",
+    "framer-motion": "^12.19.2",
+    "lucide-react": "^0.525.0",
+    "luxon": "^3.6.1",
+    "next": "^15.3.4",
+    "next-intl": "^4.3.1",
+    "pg": "^8.16.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "redis": "^5.5.6",
+    "tailwind-merge": "^3.3.1",
+    "three": "^0.177.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.4",
+    "@types/react": "^19.1.8",
+    "@types/three": "^0.177.0",
+    "drizzle-kit": "^0.31.4"
   }
 }
