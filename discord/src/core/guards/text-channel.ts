@@ -1,25 +1,27 @@
 import { ChannelType, Message, type CommandInteraction } from "discord.js";
 
-const ALLOWED_CHANNEL_ID = "1296547272569651250"; // Replace with the ID of the channel where commands are allowed
+const ALLOWED_CHANNEL_ID = process.env.DISCORD_ALLOWED_CHANNEL_ID || "1296547272569651250";
 
 /**
- * Checks if an interaction or message is in the allowed channel.
- * If not, it replies with an error message and returns true.
- * @param entity The message or interaction to check.
- * @returns `true` if the entity is from a disallowed channel, `false` otherwise.
+ * Validates if an entity is in the allowed channel (pure function, no side effects).
  */
-export async function isInvalidChannel(entity: Message | CommandInteraction): Promise<boolean> {
-  if (entity.channel?.type !== ChannelType.GuildText || entity.channel.id !== ALLOWED_CHANNEL_ID) {
-    const reply = `Rooooaaarrr!! I can only execute commands in the channel <#${ALLOWED_CHANNEL_ID}>.`;
-    
+export function isInAllowedChannel(entity: Message | CommandInteraction): boolean {
+  return entity.channel?.type === ChannelType.GuildText &&
+    entity.channel.id === ALLOWED_CHANNEL_ID;
+}
+
+/**
+ * Sends a channel restriction error message to the user (side effect only).
+ */
+export async function sendChannelError(entity: Message | CommandInteraction): Promise<void> {
+  const reply = `Rooooaaarrr!! I can only execute commands in the channel <#${ALLOWED_CHANNEL_ID}>.`;
+  try {
     if (entity instanceof Message) {
       await entity.reply(reply);
     } else {
       await entity.reply({ content: reply, ephemeral: true });
     }
-
-    return true;
+  } catch (error) {
+    console.error('Failed to send channel restriction message:', error);
   }
-
-  return false;
-} 
+}
