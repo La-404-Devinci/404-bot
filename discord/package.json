@@ -1,14 +1,17 @@
 {
+  "$schema": "./package.schema.json",
   "name": "404-bot",
   "version": "1.0.0",
   "description": "The discord bot for the 404 server",
   "main": "src/index.ts",
+  
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tspc",
     "start": "node dist/index.js",
     "format": "prettier --write .",
     "lint": "npm run lint:eslint && npm run lint:prettier",
+    
     "lint:eslint": "eslint src/**/*.ts",
     "lint:prettier": "prettier --check ."
   },
