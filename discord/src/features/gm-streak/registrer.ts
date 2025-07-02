@@ -26,5 +26,6 @@ client.on("messageCreate", async (message) => {
   await redis.set(`user:${userId}:gm:message`, message.id);
   await redis.set(`user:${userId}:gm:channel`, message.channel.id);
 
-  await message.react("🔥");
+  // Send streak update message
+  await message.react(Math.random() > 0.05 ? "🔥" : "🤓");
 });
